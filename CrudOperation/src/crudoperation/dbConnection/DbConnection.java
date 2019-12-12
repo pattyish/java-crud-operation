@@ -9,11 +9,12 @@ public class DbConnection {
     public String user="root";
     public String pass="";
     
-    public Statement dbConnection() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
+ 
+    public Connection dbConnection() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
         Class.forName(driver).newInstance();
-        Connection c=DriverManager.getConnection(url,user,pass);
-        Statement st=c.createStatement();
-        return st;
+        Connection conn =DriverManager.getConnection(url,user,pass);
+        System.out.println("connected successfull");
+        return conn ;
     }  
     
    }
