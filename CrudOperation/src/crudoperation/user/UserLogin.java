@@ -3,6 +3,7 @@ package crudoperation.user;
 import crudoperation.user.UserRegister;
 import crudoperation.dbConnection.DbConnection;
 import crudoperation.helper.HelperClass;
+import crudoperation.SystemFrames.Dashboard;
 
 import java.awt.Color;
 import java.sql.PreparedStatement;
@@ -13,8 +14,9 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 public class UserLogin extends javax.swing.JFrame {
-
-   
+    public String userFirstName = "";
+    public String userLastName = "";
+ 
     public UserLogin() {
         this.setLocationRelativeTo(null);
         this.setLocation(480, 200);
@@ -206,7 +208,13 @@ public class UserLogin extends javax.swing.JFrame {
               if(!rs.next()){
               JOptionPane.showMessageDialog(null,"incorrect password please!");
               }else{
-              JOptionPane.showMessageDialog(null,"login successfull");   
+              this.userFirstName = rs.getString("firstname");
+              this.userLastName = rs.getString("lastname");
+              System.out.println(userFirstName);
+              System.out.println(userLastName);
+              Dashboard userDashboard = new Dashboard();
+              userDashboard.setVisible(true);
+              this.setVisible(false);
               }
           } catch (ClassNotFoundException ex) {
               Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
