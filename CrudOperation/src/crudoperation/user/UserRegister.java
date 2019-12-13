@@ -1,6 +1,7 @@
 
 package crudoperation.user;
 import crudoperation.dbConnection.DbConnection;
+import crudoperation.helper.HelperClass;
 import javax.swing.*;
 import java.sql.*;
 import java.sql.PreparedStatement;
@@ -210,15 +211,18 @@ public class UserRegister extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "user is already exist");
             }else{
                if(password.equals(confirmPassword)){
+                String hashedPassword = HelperClass.hashPassword(password);
                 String saveUser = "INSERT INTO `users` (`firstname`, `lastname`, `username`, `password`) VALUES (?,?,?,?)";
                 try {
                     PreparedStatement st = conn.dbConnection().prepareStatement(saveUser);
                     st.setString(1, userFirstName);
                     st.setString(2, userLastName);
                     st.setString(3, user_Name);
-                    st.setString(4, password);
+                    st.setString(4, hashedPassword);
                     int res = st.executeUpdate();
                     JOptionPane.showMessageDialog(null, "registration goes well!!");
+                    System.out.println(hashedPassword);
+                    System.out.println(HelperClass.hashPassword(confirmPassword));
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(UserRegister.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
@@ -248,7 +252,11 @@ public class UserRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSaveUserActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
+         firstName.setText("");
+         lastName.setText("");
+         userName.setText("");
+         userPassword.setText("");
+         comfirmPassword.setText("");  
     }//GEN-LAST:event_jButton2MouseClicked
 
     

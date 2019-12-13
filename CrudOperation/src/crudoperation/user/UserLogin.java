@@ -2,6 +2,7 @@
 package crudoperation.user;
 import crudoperation.user.UserRegister;
 import crudoperation.dbConnection.DbConnection;
+import crudoperation.helper.HelperClass;
 
 import java.awt.Color;
 import java.sql.PreparedStatement;
@@ -191,6 +192,7 @@ public class UserLogin extends javax.swing.JFrame {
     private void user_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_loginActionPerformed
       String username = jTextField_username.getText();
       String password = String.valueOf(jPasswordField_userPassword.getPassword());
+      String hashedPassword = HelperClass.hashPassword(password);
       if(username.trim().equals("") || password.trim().equals("")){
           JOptionPane.showMessageDialog(null,"please fill all field is required");
       }else{
@@ -199,9 +201,13 @@ public class UserLogin extends javax.swing.JFrame {
           try {
               PreparedStatement st = conn.dbConnection().prepareStatement(findUser);
               st.setString(1, username);
-              st.setString(2, password);
+              st.setString(2, hashedPassword);
               ResultSet rs = st.executeQuery();
-              JOptionPane.showMessageDialog(null,"login successfull");
+              if(!rs.next()){
+              JOptionPane.showMessageDialog(null,"incorrect password please!");
+              }else{
+              JOptionPane.showMessageDialog(null,"login successfull");   
+              }
           } catch (ClassNotFoundException ex) {
               Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
           } catch (SQLException ex) {
