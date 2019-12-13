@@ -15,6 +15,5 @@ public class DbConnection {
         Connection conn =DriverManager.getConnection(url,user,pass);
         System.out.println("connected successfull");
         return conn ;
-    }  
-    
+    }      
    }
