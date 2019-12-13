@@ -1,6 +1,7 @@
 
 package crudoperation.SystemFrames;
 import crudoperation.user.UserLogin;
+import crudoperation.SystemFrames.AddProduct;
 
 public class Dashboard extends javax.swing.JFrame {
 
@@ -144,7 +145,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboard_buttonActionPerformed
 
     private void addProduct_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProduct_buttonActionPerformed
-        // TODO add your handling code here:
+        AddProduct addProductPage = new AddProduct();
+        addProductPage.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_addProduct_buttonActionPerformed
 
     private void displayProduct_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayProduct_buttonActionPerformed
