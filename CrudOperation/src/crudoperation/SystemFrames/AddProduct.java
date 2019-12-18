@@ -349,7 +349,15 @@ public class AddProduct extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddProduct().setVisible(true);
+                try {
+                    new AddProduct().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
