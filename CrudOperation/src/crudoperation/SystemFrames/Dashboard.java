@@ -2,6 +2,10 @@
 package crudoperation.SystemFrames;
 import crudoperation.user.UserLogin;
 import crudoperation.SystemFrames.AddProduct;
+import crudoperation.SystemFrames.DisplayAllProduct;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Dashboard extends javax.swing.JFrame {
 
@@ -145,13 +149,24 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboard_buttonActionPerformed
 
     private void addProduct_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProduct_buttonActionPerformed
-        AddProduct addProductPage = new AddProduct();
-        addProductPage.setVisible(true);
+        AddProduct addProductPage;
+        try {
+            addProductPage = new AddProduct();
+            addProductPage.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.setVisible(false);
     }//GEN-LAST:event_addProduct_buttonActionPerformed
 
     private void displayProduct_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayProduct_buttonActionPerformed
-        // TODO add your handling code here:
+        new DisplayAllProduct().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_displayProduct_buttonActionPerformed
 
     private void sellProduct_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellProduct_buttonActionPerformed

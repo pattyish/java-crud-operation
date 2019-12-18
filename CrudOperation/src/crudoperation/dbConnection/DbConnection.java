@@ -13,7 +13,6 @@ public class DbConnection {
     public Connection dbConnection() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
         Class.forName(driver).newInstance();
         Connection conn =DriverManager.getConnection(url,user,pass);
-        System.out.println("connected successfull");
         return conn ;
     }      
    }
